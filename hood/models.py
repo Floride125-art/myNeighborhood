@@ -37,3 +37,7 @@ class Business(models.Model):
 
     def delete_business(self):
         self.delete()
+class Post(models.Model):
+    post = models.CharField(max_length=200)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
