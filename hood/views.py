@@ -38,3 +38,9 @@ def addhood(request):
     else:
         form = NeighbourhoodForm()
     return render(request, 'addhood_form.html', {"form": form}) 
+def neighbourhood_details(request,neighbourhood_id):
+    businesses=Business.objects.filter(neighborhood=neighbourhood_id)
+    posts=Post.objects.filter(neighborhood=neighbourhood_id)
+    neighbourhood=Neighbourhood.objects.get(pk=neighbourhood_id)
+    return render(request,'details.html',{'neighbourhood':neighbourhood,'businesses':businesses,'posts':posts})
+
