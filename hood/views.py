@@ -25,3 +25,16 @@ def my_profile(request):
     my_hoods = Neighbourhood.objects.filter(user = current_user)
     my_profile = Profile.objects.filter(user = current_user).first
     return render(request, 'profile.html', {"my_hoods": my_hoods, "my_profile":my_profile})
+def addhood(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NeighbourhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('home')
+
+    else:
+        form = NeighbourhoodForm()
+    return render(request, 'addhood_form.html', {"form": form}) 
