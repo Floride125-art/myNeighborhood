@@ -19,4 +19,9 @@ def add_profile(request):
             return redirect('myprofile')
     else:
         form = NewProfileForm()
-    return render(request, 'edit_profile.html', {"form":form})    
+    return render(request, 'edit_profile.html', {"form":form})   
+def my_profile(request):
+    current_user = request.user
+    my_hoods = Neighbourhood.objects.filter(user = current_user)
+    my_profile = Profile.objects.filter(user = current_user).first
+    return render(request, 'profile.html', {"my_hoods": my_hoods, "my_profile":my_profile})
