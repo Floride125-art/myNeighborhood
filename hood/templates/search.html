@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="container" style="font-family:'Times New Roman', Times, serif;margin-top:5%;">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      {% if project %}
+
+
+      <h5 class="text-center">Found {{ project|length }} Neighbourhood{{ users | pluralize }}</strong></h2>
+        {% else %}
+
+        <h5 class="text-center"> Found {{ project|length }} Neighbourhood</strong></h5>
+      
+        <a class="d-block mx-auto" href="/">
+          <button class="btn btn-sm  d-block mx-auto" style="background-color: rgb(0, 255, 200);color: rgb(10, 5, 5);">Back Home</button>
+        </a>
+        {% endif %}
+      <hr>
+
+      
+        {% if project %}
+        {% for userpro in project %}
+        <div class="col-md-3"></div>
+
+        <div class="card mb-4 shadow-sm">
+            <img src="{{userpro.hood_image.url}}" width="100%">
+
+          <div class="card-body">
+
+            <p style="color: rgb(0, 255, 200); font-family: 'Lucida Console';font-weight: bold;font-size: 17px;"><i> {{ userpro.hood_name }}</i>
+              <span style="font-weight: bold; font-size: 17px;font-family: 'Lucida Console';">| {{ userpro.location }}</span></p>
+          </div>
+        </div>
+
+        {% endfor %}
+
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
