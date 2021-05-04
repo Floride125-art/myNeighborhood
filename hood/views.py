@@ -44,3 +44,18 @@ def neighbourhood_details(request,neighbourhood_id):
     neighbourhood=Neighbourhood.objects.get(pk=neighbourhood_id)
     return render(request,'details.html',{'neighbourhood':neighbourhood,'businesses':businesses,'posts':posts})
 
+def new_business(request,pk):
+    current_user = request.user
+    neighborhood = get_object_or_404(Neighbourhood,pk=pk)
+    if request.method == 'POST':
+        business_form = NewBusinessForm(request.POST, request.FILES)
+        if business_form.is_valid():
+            business = business_form.save(commit=False)
+            business.user = current_user
+            business.neighborhood=neighborhood
+            business.save()
+        return redirect('detail', neighbourhood_id=neighborhood.id)
+    else:
+        business_form = NewBusinessForm()
+    return render(request, 'new_business_form.html', {"form": business_form,'neighborhood':neighborhood})
+
