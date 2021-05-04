@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+{{block.super}}
+
+<div class="jumbotron"
+    style="background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('https://i.postimg.cc/brL0ZPPW/amazu.jpg');background-size: cover; height: 93vh; background-position: center;margin-top: -4px">
+
+    <h1
+        style="color:rgb(0, 255, 200);font-family: 'sans-serif';font-size: 40px;margin-left: 12%;margin-top: 3%;letter-spacing: 1px;">
+        Join us to explore the best neighbourhood nearby</h1>
+        <br>
+    <p><a style="color:rgb(0, 255, 200);margin-left: 24%;font-family: 'Times New Roman', Times, serif;"
+            href="{% url 'addhood' %}"><span class="btn btn-outline-warning btn-sm">Add another hood</span></a>
+    <p>
+</div>
+
+
+<div style="margin-top: -0.83cm;">
+    <div class="container" style="padding-top: 5%;">
+
+        <div class="row">
+            {% for neighbourhood in neighbourhoods %}
+            <div class="col-md-4">
+
+                <div class="card mb-4 shadow-lg">
+                    <img alt="Card image cap" class="card-img-top img-fluid" src="{{neighbourhood.hood_image.url}}"
+                        style="width: 25rem; height: 15rem;">
+
+                    <div class="card-body">
+                        <p style="color: rgb(4, 11, 39); font-family: 'Times New Roman', Times, serif;font-weight: bold;font-size: 17px;"><i> {{ neighbourhood.hood_name }}</i>
+                            <span style="font-weight: bold; font-size: 17px;font-family: 'Kaushan Script', cursive;">| {{ neighbourhood.location }}</span>
+                            <span style="float: right;"><a href="{%url 'detail' neighbourhood.id %}"><button
+                                        class="btn btn-primary btn-sm" style="background-color: rgb(4, 11, 39);">Join Hood</button></a></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
