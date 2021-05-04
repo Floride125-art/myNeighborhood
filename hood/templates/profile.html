@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-4 prof mr-2 ml-2">
+            <img class="rounded-circle d-block mx-auto" src="{{ my_profile.profile_image.url }}"height="170px" width="200px">
+            <h5 class="text-center mt-3">{{my_profile.user}}</h5>
+            <p class="text-center">Bio: {{my_profile.bio}}</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <hr>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h1 class="text-center" style="font-family: 'Times New Roman', Times, serif;"> Neighbourhoods</h1>
+    <br>
+    <br>
+    <div class="row">
+        {% for user in my_hoods %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img alt="Card image cap" class="card-img-top img-fluid" src="{{user.hood_image.url}}" style="width: 25rem; height: 15rem;">
+                <div class="card-body">
+                    <p style="color: rgb(0, 255, 200); font-family: 'Lucida Console';font-weight: bold;font-size: 17px;"><i> {{ user.hood_name }}</i>
+                        <span style="font-weight: bold; font-size: 17px;font-family: 'Lucida Console';">| {{ user.location }}</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
