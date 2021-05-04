@@ -1,5 +1,5 @@
 # myNeighborhood
-This is a project that allow user to create a web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
+This is a project that allow user to create the web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
 ## Author
 Floride Tuyisenge
 
