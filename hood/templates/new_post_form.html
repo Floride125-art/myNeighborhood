@@ -20,7 +20,7 @@
 
   <body style="background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('https://i.postimg.cc/brL0ZPPW/amazu.jpg');background-size: cover; height: 80vh; background-position: center;">
     <div class="container" style="margin-top:8%">
-      <h1 class="text-center" style="margin-bottom: 3%;color: grey;font-family: 'Lucida Console';color: rgb(8, 3, 3);">Add Post</h1>
+      <h1 class="text-center" style="margin-bottom: 3%;color: grey;font-family: 'Lucida Console';color: white;">Add Post</h1>
       <div class="row">
 
         <!-- Empty div -->
@@ -35,7 +35,7 @@
                 {%csrf_token%}
 
                 {% bootstrap_form form%}
-                <input type="submit" class="btn btn-sm" style="background-color: rgb(0, 255, 200);color: rgb(8, 3, 3);" value="Submit">
+                <input type="submit" class="btn btn-sm" style="background-color: rgb(0, 255, 200);color: white;" value="Submit">
               </form>
 
               {% block scripts %}

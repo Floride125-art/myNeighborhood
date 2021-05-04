@@ -3,10 +3,15 @@ from django.contrib.auth.decorators import login_required
 from . models import *
 from .forms import *
 from django.views import generic
+
+# Create your views here.
+
 @login_required(login_url='/accounts/login/')
 def home(request):
     neighbourhoods = Neighbourhood.objects.all()
     return render(request, 'home.html',{"neighbourhoods":neighbourhoods,})
+
+
 def add_profile(request):
     current_user = request.user
     profile = Profile.objects.filter(id = current_user.id)
@@ -19,12 +24,16 @@ def add_profile(request):
             return redirect('myprofile')
     else:
         form = NewProfileForm()
-    return render(request, 'edit_profile.html', {"form":form})   
+    return render(request, 'edit_profile.html', {"form":form})    
+
+
 def my_profile(request):
     current_user = request.user
     my_hoods = Neighbourhood.objects.filter(user = current_user)
     my_profile = Profile.objects.filter(user = current_user).first
     return render(request, 'profile.html', {"my_hoods": my_hoods, "my_profile":my_profile})
+
+
 def addhood(request):
     current_user = request.user
     if request.method == 'POST':
@@ -38,11 +47,15 @@ def addhood(request):
     else:
         form = NeighbourhoodForm()
     return render(request, 'addhood_form.html', {"form": form}) 
+
+
 def neighbourhood_details(request,neighbourhood_id):
     businesses=Business.objects.filter(neighborhood=neighbourhood_id)
     posts=Post.objects.filter(neighborhood=neighbourhood_id)
     neighbourhood=Neighbourhood.objects.get(pk=neighbourhood_id)
     return render(request,'details.html',{'neighbourhood':neighbourhood,'businesses':businesses,'posts':posts})
+
+
 
 def new_business(request,pk):
     current_user = request.user
@@ -58,6 +71,8 @@ def new_business(request,pk):
     else:
         business_form = NewBusinessForm()
     return render(request, 'new_business_form.html', {"form": business_form,'neighborhood':neighborhood})
+
+
 def new_post(request,pk):
     current_user = request.user
     neighborhood = get_object_or_404(Neighbourhood,pk=pk)
@@ -72,6 +87,8 @@ def new_post(request,pk):
     else:
         post_form = NewPostForm()
     return render(request, 'new_post_form.html', {"form": post_form,'neighborhood':neighborhood})
+
+
 def search_project(request):
     if 'project_name' in request.GET and request.GET["project_name"]:
         search_term = request.GET.get("project_name")
@@ -81,6 +98,4 @@ def search_project(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
-
-
 
