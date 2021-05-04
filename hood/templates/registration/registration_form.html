@@ -1,0 +1,37 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container" style="margin-top: 3%;">
+  <h1 style="text-align: center;font-family: 'Times New Roman', Times, serif;color: white;margin-bottom: 3%;">Sign Up</h1>
+  <div class="row">
+    <!-- Empty div -->
+    
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+
+          
+          <form action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group">
+              <input type="submit" class="btn btn-sm" style="background-color: rgb(89, 158, 95);color: white;" value="Sign Up">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+          </form>
+
+          {% if form.errors %}
+          <p style="font-family: 'Times New Roman', Times, serif;"> Some Information Might be Incorrect </p>
+          {% endif %}
+          <p style="font-family: 'Times New Roman', Times, serif;">Have an account?<a id="sign" href="/accounts/login/" style="color: rgb(89, 158, 95);"> Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- empty div -->
+  <div class="col-md-4"></div>
+</div>
+
+{% endblock %}
