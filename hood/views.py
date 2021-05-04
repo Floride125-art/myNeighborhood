@@ -72,5 +72,15 @@ def new_post(request,pk):
     else:
         post_form = NewPostForm()
     return render(request, 'new_post_form.html', {"form": post_form,'neighborhood':neighborhood})
+def search_project(request):
+    if 'project_name' in request.GET and request.GET["project_name"]:
+        search_term = request.GET.get("project_name")
+        searched_project = Neighbourhood.search_by_location(search_term)
+        message = f"{search_term}"
+        return render(request, "search.html",{"message":message,"project": searched_project})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
 
 
