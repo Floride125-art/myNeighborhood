@@ -15,7 +15,7 @@
         <div class="card-body">
 
           <h5 style="color: rgb(0, 255, 200); font-family: 'Lucida Console';font-weight: bold;"><i> {{ neighbourhood.hood_name }}</i>
-            <span style="font-size: 18px;font-family: 'Kaushan Script', cursive;">| {{ neighbourhood.location }}</span>
+            <span style="font-size: 18px;font-family: 'Lucida Console';">| {{ neighbourhood.location }}</span>
           </h5>
           <br>
           <p style="font-family: 'Lucida Console'">{{ neighbourhood.description }}</p>
@@ -33,7 +33,7 @@
 
     <div class="col-md-1"></div>
 
-    <div class="col-md-3" style="border-right: 1px solid rgb(214, 208, 208);">
+    <div class="col-md-3" style="border-right: 1px solid rgb(66, 14, 14);">
       <p><a href="{%url 'new_business' pk=neighbourhood.id %}" class="btn btn-primary btn-sm" style="background-color: rgb(0, 255, 200);font-family: 'Lucida Console';font-weight: bold;">Add Business</a></p>
       <hr>
       {%if businesses%}
